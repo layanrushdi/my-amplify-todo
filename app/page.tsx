@@ -15,7 +15,7 @@ Amplify.configure(outputs);
 const client = generateClient<Schema>();
 
 export default function App() {
-  const { signOut } = useAuthenticator(); // ⭐ Sign out
+  const { user, signOut } = useAuthenticator(); // ⭐ Added user here
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   // ⭐ Listen to todos
@@ -43,7 +43,8 @@ export default function App() {
 
   return (
     <main>
-      <h1>My todos</h1>
+      {/* ⭐ Username added here */}
+      <h1>{user?.signInDetails?.loginId}'s todos</h1>
 
       {/* Create new todo */}
       <button onClick={createTodo}>+ new</button>
